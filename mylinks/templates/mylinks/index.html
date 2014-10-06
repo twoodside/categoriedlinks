@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+	<title>Index page</title>
+	<style>
+	ul{
+		color:red;
+	}
+	ul ul{
+		color:blue;
+	}
+	a{
+		color:inherit;
+	}
+	h1{
+		font-size:20pt;
+	}
+	h2{
+		font-size:15pt;
+	}
+	
+	</style>
+</head>
+<body>
+
+	{% if categories %}
+		<p>
+			<h1>Links:</h1>
+			<ul>
+				{% for oneCat in categories %}
+					<li>
+						<h2><a href="{% url 'mylinks:updateNum' oneCat.id %}">{{ oneCat.header_label }}</a></h2>
+						<ul>
+							{% for oneLink in oneCat.link_set.all %}
+								<li><a target="_blank" href="{{ oneLink.link_url }}">{{ oneLink.link_label }}</a></li>
+							{% endfor %}
+						</ul>
+					</li>
+				{% endfor %}
+			</ul>
+		</p>
+	{% endif %}
+	<p><a href="{% url 'mylinks:update' %}">Edit categories</a></p>
+
+</body>
+</HTML>

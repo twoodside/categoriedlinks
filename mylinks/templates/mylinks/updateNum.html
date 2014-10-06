@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+	<title>Add Category</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+	<script>
+		var num={{ category.link_set.count }}+1;
+		function addLink(e){
+			$(e).before('<li><input type="text" placeholder="Link" name="link_'+ num +'" /> <input type="url" placeholder="URL" name="URL_'+num+'" /></li>');
+			num++;
+		}
+	</script>
+	<style>
+	body{
+		background-color:#000;
+	}
+	.content{
+		margin-right:10%;
+		margin-left:10%;
+		background-color:#FFF;
+	}
+	.collapsible{
+		background-color:#CCC;
+	}
+	
+	.collapsible h2 a{
+		color:inherit;
+	}
+	
+	.collapsible .predefined_links{
+		display:initial;
+	}
+	.collapsible .vertical_expand_bar{
+		visibility:hidden;
+	}
+	
+	.oneCat{
+		padding-bottom:2em;
+	}
+	.oneCat ul{
+		margin:0px;
+	}
+	</style>
+	
+</head>
+<body>
+	<div class="content">
+		<h1>Edit Category:</h1>
+		
+		{% csrf_token %}
+		
+		{% if error_message %}<p><b>{{ error_message }}</b></p>{% endif %}
+		
+		
+		<form action="{% url 'mylinks:categoriesAddUpdateNum' category.id %}" method="post" class="form">
+			{% csrf_token %}
+		
+			<div class="oneCat" id="{{ category.header_label }}_container">
+				<input type="text" value="{{ category.header_label }}" placeholder="Category" name="Header" />
+				<ul>
+					{% for link in category.link_set.all %}
+						<li>
+							<input type="text" placeholder="Link" value="{{link.link_label}}" name="Link_{{link.id}}" />
+							<input type="url" placeholder="URL" value="{{ link.link_url }}" name="URL_{{link.id}}" />
+						</li>
+					{% endfor %}
+					<li><button type="button"onclick="addLink(this);">Add link</button></li>
+				</ul>
+				
+			</div>
+			
+			<input type="submit" value="Add" id="submission" />
+		</form>
+	
+		
+	</div>
+</body>
+</HTML>

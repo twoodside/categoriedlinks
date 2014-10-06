@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+	<title>Add Category</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+	<script>
+		function addLink(e){
+			$(e).before('<li><input type="text" placeholder="Link" ></input></li>');
+		}
+		function addInput(){
+			$(".form input").attr("name","");
+			var element='<input type="text" placeholder="Category name" name="lastCategory" ></input><ul><li><input type="text" placeholder="Link" ></input></li><li><input type="text" placeholder="Link" ></input></li><li><input type="text" placeholder="Link" ></input></li><button type="button"onclick="addLink(this);">Add link</button></ul>';
+			element=$(".form #submission").before(element);
+			
+			window.location.hash = "lastCategory" ;
+		}
+		
+		function toggleContent(){
+			if ($(".collapsible .predefined_links").css("display") == "none" ){
+				$(".collapsible .predefined_links").css("display","initial");
+				$(".collapsible .vertical_expand_bar").css("visibility","hidden");
+			}
+			else{
+				$(".collapsible .predefined_links").css("display","none");
+				$(".collapsible .vertical_expand_bar").css("visibility","visible");
+			}
+		}
+		
+	</script>
+	<style>
+	body{
+		background-color:#000;
+	}
+	.content{
+		margin-right:10%;
+		margin-left:10%;
+		background-color:#FFF;
+	}
+	.collapsible{
+		background-color:#CCC;
+	}
+	
+	.collapsible h2 a{
+		color:inherit;
+	}
+	
+	.collapsible .predefined_links{
+		display:initial;
+	}
+	.collapsible .vertical_expand_bar{
+		visibility:hidden;
+	}
+	
+	.oneCat{
+		padding-bottom:2em;
+	}
+	.oneCat ul{
+		margin:0px;
+	}
+	</style>
+	
+</head>
+<body>
+	<div class="content">
+		<h1>Edit Category:</h1>
+		
+		{% csrf_token %}
+		
+		{% if error_message %}<p><b>{{ error_message }}</b></p>{% endif %}
+		
+		<button type="button" onclick="addInput();">Add category</button>
+		<form action="{% url 'mylinks:categoriesAddUpdate' %}" method="post" class="form">
+			{% csrf_token %}
+			
+			<!-- Collapsible div with predefined things -->
+			<div data-collapsed="true" class="collapsible">
+				<h2>
+					<a href="#" onclick="toggleContent();return false();" >
+						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+								 width="25px" height="25px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+							<circle style="stroke:#000000;stroke-miterlimit:10;" cx="25.125" cy="25.188" r="23.438"/>
+							<rect x="20.5" y="3.5" style="fill:#FFFFFF;stroke:#FFFFFF;stroke-miterlimit:10;" width="9" height="43" class="vertical_expand_bar" />
+							<rect x="3.5" y="20.5" style="fill:#FFFFFF;stroke:#FFFFFF;stroke-miterlimit:10;" width="43" height="9" />
+						</svg>
+					</a>  
+					<a href="#" onclick="toggleContent();return false();">Older forms</a>
+				</h2>
+				
+				<div class="predefined_links">
+				{% for category in categories %}
+					<div class="oneCat" id="{{ category.header_label }}_container">
+						<input type="text" value="{{ category.header_label }}" name="Header" />
+						<ul>
+							{% for link in category.link_set.all %}
+								<li>
+									<input type="text" placeholder="Link" value="{{link.link_label}}" name="Link" />
+									<input type="url" placeholder="URL" value="{{ link.link_url }}" name="URL" />
+								</li>
+							{% endfor %}
+						</ul>
+						<button type="button"onclick="addLink(this);">Add link</button>
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+			
+			<!--
+			<input type="text" placeholder="Category name" ></input>
+			<ul>
+				<li><input type="text" placeholder="Link" /></li>
+				<li><input type="text" placeholder="Link" ></input></li>
+				<li><input type="text" placeholder="Link" ></input></li>
+				<button type="button" onclick="addLink(this);">Add link</button>
+			</ul>
+			<input type="text" placeholder="Category name" name="lastCategory"></input>
+			<ul>
+				<li><input type="text" placeholder="Link" ></input></li>
+				<li><input type="text" placeholder="Link" ></input></li>
+				<li><input type="text" placeholder="Link" ></input></li>
+				<button type="button"onclick="addLink(this);">Add link</button>
+			</ul>
+			-->
+			
+			<input type="submit" value="Add" id="submission" />
+		</form>
+	
+		
+	</div>
+</body>
+</HTML>
