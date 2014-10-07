@@ -51,42 +51,44 @@ def categoriesAddUpdateNum(request,stuff):
 	
 	r=p.header_label;
 	
+	newLinks=[];
+	
 	for x in request.POST:
-		print(x);
 		try:
 			linktype,linkid=x.split("_",1);
 		except ValueError:
 			continue;
 			
-		print(linktype,linkid);
 		
 		if (linktype=="Link" or linktype=="URL"):
-			print("2.5");
 			if ( p.link_set.filter(id=linkid).exists() ):		
-				print("3a");
 				link=p.link_set.get(id=linkid);
 				if (linktype=="Link"):
-					print("4aa");
 					if ( link.link_label != request.POST[x] ):
 						link.link_label=request.POST[x];
 				elif (linktype=="URL"):
-					print("4ab");
 					if ( link.link_url != request.POST[x] ):
 						link.link_url=request.POST[x];
 						
 				link.save();
 			else:
-				print("3b");
-				link=Link();
-				link.category=p;
-				if (linktype=="Link"):
-					print("4ba");
-					link.link_label=request.POST[x];
-				elif (linktype=="URL"):
-					print("4bb");
-					link.link_url=request.POST[x];
-				link.save();
-		
-	
+				if (newLinks[linkid] is None):
+					link=Link();
+					link.category=p;
+					if (linktype=="Link"):
+						link.link_label=request.POST[x];
+					elif (linktype=="URL"):
+						link.link_url=request.POST[x];
+					newLinks[linkid]=link;
+				else:
+					link=newLinks[linkid];
+					if (linktype=="Link"):
+						link.link_label=request.POST[x];
+					elif (linktype=="URL"):
+						link.link_url=request.POST[x];
+					newLinks[linkid]=link;
+
+	for link in newLinks:
+		link.save();
 	
 	return HttpResponse(r);

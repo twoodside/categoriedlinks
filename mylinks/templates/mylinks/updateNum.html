@@ -59,10 +59,10 @@
 				<input type="text" value="{{ category.header_label }}" placeholder="Category" name="Header" />
 				<ul>
 					{% for link in category.link_set.all %}
-						<li>
+						<li><fieldset>
 							<input type="text" placeholder="Link" value="{{link.link_label}}" name="Link_{{link.id}}" />
 							<input type="url" placeholder="URL" value="{{ link.link_url }}" name="URL_{{link.id}}" />
-						</li>
+						</fieldset></li>
 					{% endfor %}
 					<li><button type="button"onclick="addLink(this);">Add link</button></li>
 				</ul>
