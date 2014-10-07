@@ -61,6 +61,7 @@ def categoriesAddUpdateNum(request,stuff):
 			
 		
 		if (linktype=="Link" or linktype=="URL"):
+			print(request.POST[x]+"  ");
 			if ( p.link_set.filter(id=linkid).exists() ):
 				link=p.link_set.get(id=linkid);
 				if (linktype=="Link"):
@@ -74,7 +75,7 @@ def categoriesAddUpdateNum(request,stuff):
 						
 				link.save();
 			else:
-				r+="-";
+				r+="_";
 				linkid=int(linkid);
 				while ( len(newLinks) <= linkid ):
 					r+='+';
