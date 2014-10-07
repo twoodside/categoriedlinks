@@ -89,6 +89,7 @@ def categoriesAddUpdateNum(request,stuff):
 					newLinks[linkid]=link;
 				else:
 					link=newLinks[linkid];
+					r+="___";
 					if (linktype=="Link"):
 						r+="5 "+request.POST[x]+"<br>";
 						link.link_label=request.POST[x];
