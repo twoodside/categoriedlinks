@@ -92,7 +92,8 @@ def categoriesAddUpdateNum(request,stuff):
 					newLinks[linkid]=link;
 
 	for link in newLinks:
-		link.save();
+		if (link != '\0'):
+			link.save();
 	
 	# return HttpResponse(r);
 	return index(request);
