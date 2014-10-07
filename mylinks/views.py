@@ -74,8 +74,8 @@ def categoriesAddUpdateNum(request,stuff):
 			else:
 				linkid=int(linkid);
 				while ( len(newLinks) < linkid ):
-					newLinks.append(None);
-				if (newLinks[linkid] is None):
+					newLinks.append('\0');
+				if (newLinks[linkid] == '\0'):
 					link=Link();
 					link.category=p;
 					if (linktype=="Link"):
