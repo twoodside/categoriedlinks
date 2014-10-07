@@ -72,6 +72,7 @@ def categoriesAddUpdateNum(request,stuff):
 						
 				link.save();
 			else:
+				linkid=int(linkid);
 				if (newLinks[linkid] is None):
 					link=Link();
 					link.category=p;
@@ -91,4 +92,5 @@ def categoriesAddUpdateNum(request,stuff):
 	for link in newLinks:
 		link.save();
 	
-	return HttpResponse(r);
+	# return HttpResponse(r);
+	return index(request);
