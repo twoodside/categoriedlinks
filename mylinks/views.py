@@ -64,11 +64,11 @@ def categoriesAddUpdateNum(request,stuff):
 			if ( p.link_set.filter(id=linkid).exists() ):
 				link=p.link_set.get(id=linkid);
 				if (linktype=="Link"):
-					r+="1 "+request.POST[x]+"\n";
+					r+="1 "+request.POST[x]+"<br>";
 					if ( link.link_label != request.POST[x] ):
 						link.link_label=request.POST[x];
 				elif (linktype=="URL"):
-					r+="2 "+request.POST[x]+"\n";
+					r+="2 "+request.POST[x]+"<br>";
 					if ( link.link_url != request.POST[x] ):
 						link.link_url=request.POST[x];
 						
@@ -81,19 +81,19 @@ def categoriesAddUpdateNum(request,stuff):
 					link=Link();
 					link.category=p;
 					if (linktype=="Link"):
-						r+="3 "+request.POST[x]+"\n";
+						r+="3 "+request.POST[x]+"<br>";
 						link.link_label=request.POST[x];
 					elif (linktype=="URL"):
-						r+="4 "+request.POST[x]+"\n";
+						r+="4 "+request.POST[x]+"<br>";
 						link.link_url=request.POST[x];
 					newLinks[linkid]=link;
 				else:
 					link=newLinks[linkid];
 					if (linktype=="Link"):
-						r+="5 "+request.POST[x]+"\n";
+						r+="5 "+request.POST[x]+"<br>";
 						link.link_label=request.POST[x];
 					elif (linktype=="URL"):
-						r+="6 "+request.POST[x]+"\n";
+						r+="6 "+request.POST[x]+"<br>";
 						link.link_url=request.POST[x];
 					newLinks[linkid]=link;
 
