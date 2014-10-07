@@ -74,6 +74,7 @@ def categoriesAddUpdateNum(request,stuff):
 						
 				link.save();
 			else:
+				r+="-";
 				linkid=int(linkid);
 				while ( len(newLinks) <= linkid ):
 					newLinks.append('\0');
@@ -89,7 +90,7 @@ def categoriesAddUpdateNum(request,stuff):
 					newLinks[linkid]=link;
 				else:
 					link=newLinks[linkid];
-					r+="___";
+					r+="-";
 					if (linktype=="Link"):
 						r+="5 "+request.POST[x]+"<br>";
 						link.link_label=request.POST[x];
