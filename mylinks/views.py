@@ -73,7 +73,7 @@ def categoriesAddUpdateNum(request,stuff):
 				link.save();
 			else:
 				linkid=int(linkid);
-				while (linkid < len(newLinks) ):
+				while ( len(newLinks) < linkid ):
 					newLinks.append(None);
 				if (newLinks[linkid] is None):
 					link=Link();
