@@ -61,12 +61,14 @@ def categoriesAddUpdateNum(request,stuff):
 			
 		
 		if (linktype=="Link" or linktype=="URL"):
-			if ( p.link_set.filter(id=linkid).exists() ):		
+			if ( p.link_set.filter(id=linkid).exists() ):
 				link=p.link_set.get(id=linkid);
 				if (linktype=="Link"):
+					r+="1\n";
 					if ( link.link_label != request.POST[x] ):
 						link.link_label=request.POST[x];
 				elif (linktype=="URL"):
+					r+="2\n";
 					if ( link.link_url != request.POST[x] ):
 						link.link_url=request.POST[x];
 						
@@ -79,21 +81,24 @@ def categoriesAddUpdateNum(request,stuff):
 					link=Link();
 					link.category=p;
 					if (linktype=="Link"):
+						r+="3\n";
 						link.link_label=request.POST[x];
 					elif (linktype=="URL"):
+						r+="4\n";
 						link.link_url=request.POST[x];
 					newLinks[linkid]=link;
 				else:
 					link=newLinks[linkid];
 					if (linktype=="Link"):
+						r+="5\n";
 						link.link_label=request.POST[x];
 					elif (linktype=="URL"):
+						r+="6\n";
 						link.link_url=request.POST[x];
 					newLinks[linkid]=link;
 
 	for link in newLinks:
 		if (link != '\0'):
-			r+=link.link_label+" "+link.link_url+"\n";
 			link.save();
 	
 	return HttpResponse(r);
