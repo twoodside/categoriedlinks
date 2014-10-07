@@ -49,7 +49,7 @@ def categoriesAddUpdateNum(request,stuff):
 	
 	p=Category.objects.get(id=stuff);
 	
-	r=p.header_label;
+	r="";
 	
 	newLinks=[];
 	
@@ -93,7 +93,8 @@ def categoriesAddUpdateNum(request,stuff):
 
 	for link in newLinks:
 		if (link != '\0'):
+			r+=link.link_label+" "+link.link_url+"\n";
 			link.save();
 	
-	# return HttpResponse(r);
-	return index(request);
+	return HttpResponse(r);
+	#return index(request);
