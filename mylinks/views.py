@@ -52,15 +52,12 @@ def categoriesAddUpdate(request):
 		
 		if cats.filter(id=catid).exists():
 			category=cats.get(id=catid);
-			r+="1 " + str(catid) + "<br>";
 		else:
 			category=Category();
-			r+="2<br>";
 		category.header_label=request.POST[x];
 		category.save();
 	
-	# return redirect("mylinks:categoriedlinks_index");
-	return HttpResponse(r);
+	return redirect("mylinks:categoriedlinks_index");
 
 
 def categoriesAddUpdateNum(request,stuff):
