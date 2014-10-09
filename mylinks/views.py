@@ -82,8 +82,8 @@ def categoriesAddUpdateNum(request,stuff):
 			link.link_label=newLinks[i][0];
 			link.link_url=newLinks[i][1];
 			link.save();
-		
-	return HttpResponse( reverse("categoriedlinks-index") );
+	x=reverse("categoriedlinks-index")
+	return HttpResponse( "dsa" );
 	#return HttpResponse( reverse("categoriesAddUpdateNum") );
 	#return index(request);
 	#return redirect("categoriedlinks-index");
