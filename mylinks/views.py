@@ -52,7 +52,7 @@ def categoriesAddUpdate(request):
 		
 		if cats.filter(id=catid).exists():
 			category=cats.get(id=catid);
-			r+="1 " + id + "<br>";
+			r+="1 " + catid + "<br>";
 		else:
 			category=Category();
 			r+="2<br>";
@@ -85,6 +85,13 @@ def categoriesAddUpdateNum(request,stuff):
 			newLinks[int(linkid)][0]=request.POST[x];
 		elif (linktype=="URL"):
 			newLinks[int(linkid)][1]=request.POST[x];
+		elif (linktype=="Header"):
+			if Category.objects.filter( id=int(linkid) ).exists():
+				category=Category.objects.get( id=int(linkid) );
+			else:
+				category=Category();
+			category.header_label=request.POST[x];
+			category.save();
 		
 	for i in range( 0,len(newLinks) ):
 		if (newLinks[i]!=["",""]):
@@ -96,4 +103,7 @@ def categoriesAddUpdateNum(request,stuff):
 			link.link_label=newLinks[i][0];
 			link.link_url=newLinks[i][1];
 			link.save();
+			
+	
+	
 	return redirect("mylinks:categoriedlinks_index");

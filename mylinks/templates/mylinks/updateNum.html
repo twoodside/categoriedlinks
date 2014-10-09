@@ -78,7 +78,7 @@
 			<input type="hidden" value="1" id="maxId" name="maxId" />
 			
 			<div class="oneCat" id="{{ category.header_label }}_container">
-				<input type="text" value="{{ category.header_label }}" placeholder="Category" name="Header" />
+				<input type="text" value="{{ category.header_label }}" placeholder="Category" name="Header_{{ category.id }}" />
 				<ul>
 					{% for link in category.link_set.all %}
 						<li>
