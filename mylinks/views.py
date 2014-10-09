@@ -56,7 +56,7 @@ def categoriesAddUpdateNum(request,stuff):
 	for i in range(0,n):
 		newLinks[i]=["",""];
 	
-	r+=newLinks+"<br>";
+	#r+=newLinks+"<br>";
 	
 	for x in request.POST:
 		#r+=x+" "+request.POST[x]+"<br>";
