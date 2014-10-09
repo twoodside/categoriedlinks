@@ -49,17 +49,27 @@ def categoriesAddUpdateNum(request,stuff):
 	
 	p=Category.objects.get(id=stuff);
 	
-	r=request.POST["maxId"];
+	r=request.POST["maxId"]+"<br>";
 	
-	newLinks=[];
+	n=int(request.POST["maxId"]);
+	newLinks=[0]*n
+	for i in range(0,n):
+		newLinks[i]=["",""];
 	
 	for x in request.POST:
-		r+=x+" "+request.POST[x]+"<br>";
+		#r+=x+" "+request.POST[x]+"<br>";
 		try:
 			linktype,linkid=x.split("_",1);
 		except ValueError:
 			continue;
 		
+		if (linktype=="Link"):
+			newLinks[int(linkid)][0]=request.POST[x];
+		elif (linktype=="URL"):
+			newLinks[int(linkid)][1]=request.POST[x];
+		
+	for x in newLinks:
+		r+="Label:"+x[0]+" URL:"+x[1]+"<br>";
 		
 		# if (linktype=="Link" or linktype=="URL"):
 			# print(":"+request.POST[x]+":");
