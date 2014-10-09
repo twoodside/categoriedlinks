@@ -15,7 +15,6 @@ def index(request):
 	context = RequestContext(request, {
 		'categories' : categories,
 	});
-	m=reverse("mylinks:categoriedlinks_index");
 	return HttpResponse( template.render(context) );
 
 
