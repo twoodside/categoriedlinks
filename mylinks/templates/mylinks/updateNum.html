@@ -13,9 +13,9 @@
 			usedNums[id]=1;
 			if (id>maxId){
 				maxId=id;
-				$("#maxId").attr( "value",id );
+				$("#maxId").attr("value",id );
 			}
-			alert("usedNums: "+usedNums+" id: "+id+" maxId: "+id.toString() );
+			alert("usedNums: "+usedNums+" id: "+id+" maxId: "+$("#maxId").attr("value") );
 		}
 		
 		function addLink(e){
