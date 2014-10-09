@@ -83,7 +83,7 @@ def categoriesAddUpdateNum(request,stuff):
 			link.link_url=newLinks[i][1];
 			link.save();
 	#m=reverse("categoriedlinks-index")
-	m=reverse(views.index);
+	m=reverse(index);
 	return HttpResponse( "dsa" );
 	#return HttpResponse( reverse("categoriesAddUpdateNum") );
 	#return index(request);
