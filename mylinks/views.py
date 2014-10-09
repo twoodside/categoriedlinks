@@ -56,10 +56,7 @@ def categoriesAddUpdateNum(request,stuff):
 	for i in range(0,n):
 		newLinks[i]=["",""];
 	
-	#r+=newLinks+"<br>";
-	
 	for x in request.POST:
-		# r+=x+" "+request.POST[x]+"<br>";
 		try:
 			linktype,linkid=x.split("_",1);
 		except ValueError:
@@ -81,8 +78,3 @@ def categoriesAddUpdateNum(request,stuff):
 			link.link_url=newLinks[i][1];
 			link.save();
 	return redirect("mylinks:categoriedlinks_index");
-	#m=reverse(index);
-	#return HttpResponse( "dsa" );
-	#return HttpResponse( reverse("categoriesAddUpdateNum") );
-	#return index(request);
-	#return redirect("categoriedlinks-index");
