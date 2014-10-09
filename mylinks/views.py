@@ -49,7 +49,7 @@ def categoriesAddUpdateNum(request,stuff):
 	
 	p=Category.objects.get(id=stuff);
 	
-	r="";
+	r=request.POST["maxId"];
 	
 	newLinks=[];
 	
