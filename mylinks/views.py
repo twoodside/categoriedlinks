@@ -71,8 +71,10 @@ def categoriesAddUpdateNum(request,stuff):
 		elif (linktype=="URL"):
 			newLinks[int(linkid)][1]=request.POST[x];
 		
-	for x in newLinks:
-		r+="Label:"+x[0]+" URL:"+x[1]+"<br>";
+	#for x in newLinks:
+	for i in range( 0,len(newLinks) ):
+		if (newLinks[i]!=["",""]):
+			r+="id: "+i+" Label:"+newLinks[i][0]+" URL:"+newLinks[i][1]+"<br>";
 		
 		# if (linktype=="Link" or linktype=="URL"):
 			# print(":"+request.POST[x]+":");
