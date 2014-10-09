@@ -3,7 +3,6 @@ import re;
 from django.shortcuts import render;
 from django.http import HttpResponse,HttpResponseRedirect;
 from django.template import RequestContext, loader;
-from django.core.urlresolvers import reverse;
 from django.shortcuts import redirect;
 
 from mylinks.models import Category,Link;
@@ -38,9 +37,25 @@ def updateNum(request,stuff):
 
 def categoriesAddUpdate(request):
 	
+	cats=Category.objects;
 	
+	for x in request.POST:
+		try:
+			trash,catid=x.split("_",1);
+		except ValueError:
+			continue;
+			
+		if trash!="Cat":
+			continue;
+		
+		if cats.filter(id=catid).exists():
+			category=cats.get(id=catid);
+		else:
+			category=Category();
+		category.header_label=request.POST[x];
+		category.save();
 	
-	return HttpResponse("HelloWorld");
+	return redirect("mylinks:categoriedlinks_index");
 
 
 def categoriesAddUpdateNum(request,stuff):
