@@ -20,12 +20,13 @@ def index(request):
 
 
 def update(request):
-	categories = Category.objects.order_by('-header_label');
-	template = loader.get_template('mylinks/update.html');
-	context = RequestContext(request, {
-		'categories' : categories,
-	});
-	return HttpResponse( template.render(context) );
+	return HttpResponse("test");
+	# categories = Category.objects.order_by('-header_label');
+	# template = loader.get_template('mylinks/update.html');
+	# context = RequestContext(request, {
+		# 'categories' : categories,
+	# });
+	# return HttpResponse( template.render(context) );
 
 
 def updateNum(request,stuff):
