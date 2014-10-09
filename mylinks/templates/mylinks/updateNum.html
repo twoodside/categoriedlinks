@@ -27,10 +27,13 @@
 			usedNums[i]=1;
 			if (i>maxId){
 				maxId=i;
-				$("#maxId").attr( "value",i.toString() );
+				//$("#maxId").attr( "value",i.toString() );
 			}
-			alert("usedNums: "+usedNums+" i: "+i+" maxId: "+maxId);
+			//alert("usedNums: "+usedNums+" i: "+i+" maxId: "+maxId);
 			$(e).before('<li><fieldset><input type="text" placeholder="Link" name="link_'+ i +'" /> <input type="url" placeholder="URL" name="URL_'+i+'" /></li>');
+		}
+		function testThing(){
+			alert($("#maxId").val());
 		}
 	</script>
 	<style>
@@ -94,7 +97,8 @@
 						</fieldset>
 						</li>
 					{% endfor %}
-					<li><button type="button"onclick="addLink(this);">Add link</button></li>
+					<li><button type="button" onclick="addLink(this);">Add link</button></li>
+					<li><button type="button" onclick='testThing();'>ohiasd</button></li>
 				</ul>
 				
 			</div>
