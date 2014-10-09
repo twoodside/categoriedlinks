@@ -83,4 +83,4 @@ def categoriesAddUpdateNum(request,stuff):
 			link.link_url=newLinks[i][1];
 			link.save();
 	
-	return redirect("index");
+	return redirect("index",request='');
