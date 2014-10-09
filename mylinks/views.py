@@ -15,7 +15,7 @@ def index(request):
 	context = RequestContext(request, {
 		'categories' : categories,
 	});
-	m=reverse("mylinks:categoriedlinks_index_orig");
+	m=reverse("mylinks:categoriedlinks_index");
 	return HttpResponse( template.render(context) );
 
 
@@ -82,7 +82,7 @@ def categoriesAddUpdateNum(request,stuff):
 			link.link_label=newLinks[i][0];
 			link.link_url=newLinks[i][1];
 			link.save();
-	m=reverse("mylinks:categoriedlinks_index_orig");
+	m=reverse("mylinks:categoriedlinks_index");
 	#m=reverse(index);
 	return HttpResponse( "dsa" );
 	#return HttpResponse( reverse("categoriesAddUpdateNum") );
