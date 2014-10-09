@@ -13,10 +13,9 @@
 			usedNums[id]=1;
 			if (id>maxId){
 				maxId=id;
-				//$("#maxId").attr("value",id.toString() );
-				//$("#maxID").val(id.toString());
+				$("#maxID").val(id.toString());
 			}
-			alert("usedNums: "+usedNums+" id: "+id+" maxId: "+$("#maxId").val() );
+			//alert("usedNums: "+usedNums+" id: "+id+" maxId: "+$("#maxId").val() );
 		}
 		
 		function addLink(e){
@@ -81,7 +80,7 @@
 		<form action="{% url 'mylinks:categoriesAddUpdateNum' category.id %}" method="post" class="form">
 			{% csrf_token %}
 		
-			
+			<input type="hidden" value="1" id="maxId" name="maxId" />
 			
 			<div class="oneCat" id="{{ category.header_label }}_container">
 				<input type="text" value="{{ category.header_label }}" placeholder="Category" name="Header" />
@@ -102,8 +101,6 @@
 				</ul>
 				
 			</div>
-			
-			<input type="hidden" value="1" id="maxId" name="maxId" />
 			
 			<input type="submit" value="Add" id="submission" />
 		</form>
