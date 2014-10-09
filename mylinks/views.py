@@ -21,7 +21,6 @@ def index(request):
 
 def update(request):
 	categories = Category.objects.order_by('-header_label');
-	#links = Link.objects.order_by('');
 	template = loader.get_template('mylinks/update.html');
 	context = RequestContext(request, {
 		'categories' : categories,
@@ -36,7 +35,6 @@ def updateNum(request,stuff):
 		'category' : category,
 	});
 	return HttpResponse( template.render(context) );
-	# return HttpResponse( "Object id \"%s\"."%(stuff) );
 
 
 def categoriesAddUpdate(request):
