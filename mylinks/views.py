@@ -52,7 +52,7 @@ def categoriesAddUpdate(request):
 		
 		if cats.filter(id=catid).exists():
 			category=cats.get(id=catid);
-			r+="1 " + catid + "<br>";
+			r+="1 " + str(catid) + "<br>";
 		else:
 			category=Category();
 			r+="2<br>";
