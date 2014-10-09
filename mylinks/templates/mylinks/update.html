@@ -83,7 +83,7 @@
 				<ul>
 					{% for category in categories %}
 						<li>
-							<input type="text" placeholder="Category name" value="{{category.header_label}}" name="Cat_{{link.id}}" />
+							<input type="text" placeholder="Category name" value="{{category.header_label}}" name="Cat_{{category.id}}" />
 							<script>
 								addIdToUsed( {{category.id}} );
 							</script>
