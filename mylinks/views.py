@@ -6,7 +6,7 @@ from django.template import RequestContext, loader;
 from django.core.urlresolvers import reverse;
 from django.shortcuts import redirect;
 
-
+from mylinks import urls;
 from mylinks.models import Category,Link;
 
 # Create your views here.
