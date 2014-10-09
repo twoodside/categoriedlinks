@@ -13,6 +13,7 @@
 			usedNums[id]=1;
 			if (id>maxId){
 				maxId=id;
+				$("#maxId").attr("value",i);
 			}
 		}
 		
@@ -24,7 +25,7 @@
 			usedNums[i]=1;
 			if (i>maxId){
 				maxId=i;
-				
+				$("#maxId").attr("value",i);
 			}
 			$(e).before('<li><fieldset><input type="text" placeholder="Link" name="link_'+ i +'" /> <input type="url" placeholder="URL" name="URL_'+i+'" /></li>');
 		}
@@ -95,7 +96,7 @@
 				
 			</div>
 			
-			<input type="hidden" value="" id="maxId" name="maxId" />
+			<input type="hidden" value="1" id="maxId" name="maxId" />
 			
 			<input type="submit" value="Add" id="submission" />
 		</form>
