@@ -42,6 +42,7 @@ def categoriesAddUpdate(request):
 	for x in request.POST:
 		try:
 			trash,catid=x.split("_",1);
+			catid=int(catid);
 		except ValueError:
 			continue;
 			
