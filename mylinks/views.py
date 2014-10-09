@@ -83,6 +83,6 @@ def categoriesAddUpdateNum(request,stuff):
 			link.link_url=newLinks[i][1];
 			link.save();
 		
-	return HttpResponse( reverse("index") );
+	return HttpResponse( reverse("categoriedlinks-index") );
 	#return index(request);
-	#return redirect("index");
+	#return redirect("categoriedlinks-index");
