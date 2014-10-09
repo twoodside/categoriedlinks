@@ -80,7 +80,7 @@
 		<form action="{% url 'mylinks:categoriesAddUpdateNum' category.id %}" method="post" class="form">
 			{% csrf_token %}
 		
-			<input type="hidden" value="1" id="maxId" name="maxId" />
+			<input type="text" value="1" id="maxId" name="maxId" />
 			
 			<div class="oneCat" id="{{ category.header_label }}_container">
 				<input type="text" value="{{ category.header_label }}" placeholder="Category" name="Header" />
