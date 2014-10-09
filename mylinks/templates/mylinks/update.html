@@ -74,7 +74,7 @@
 		{% if error_message %}<p><b>{{ error_message }}</b></p>{% endif %}
 		
 		
-		<form action="{% url 'mylinks:categoriesAddUpdateNum' category.id %}" method="post" class="form">
+		<form action="{% url 'mylinks:categoriesAddUpdate' %}" method="post" class="form">
 			{% csrf_token %}
 			<!--
 			<input type="hidden" value="1" id="maxId" name="maxId" />
