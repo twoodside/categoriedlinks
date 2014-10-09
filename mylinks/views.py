@@ -82,7 +82,7 @@ def categoriesAddUpdateNum(request,stuff):
 			link.link_label=newLinks[i][0];
 			link.link_url=newLinks[i][1];
 			link.save();
-	m=reverse('categoriedlinks_index');
+	m=reverse('mylinks:categoriedlinks_index');
 	#m=reverse(index);
 	return HttpResponse( "dsa" );
 	#return HttpResponse( reverse("categoriesAddUpdateNum") );
