@@ -13,7 +13,7 @@
 			usedNums[id]=1;
 			if (id>maxId){
 				maxId=id;
-				$("#maxId").val("7");
+				$("#maxId").val(id.toString());
 			}
 			alert("usedNums: "+usedNums+" id: "+id+" id: "+id.toString()+" maxId: "+$("#maxId").val()+" maxId: "+maxId );
 		}
@@ -26,7 +26,7 @@
 			usedNums[i]=1;
 			if (i>maxId){
 				maxId=i;
-				$("#maxID").val(i.toString());
+				$("#maxId").val(i.toString());
 			}
 			//alert("usedNums: "+usedNums+" i: "+i+" maxId: "+maxId);
 			$(e).before('<li><fieldset><input type="text" placeholder="Link" name="link_'+ i +'" /> <input type="url" placeholder="URL" name="URL_'+i+'" /></li>');
