@@ -4,10 +4,29 @@
 	<title>Add Category</title>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
 	<script>
-		var num={{ category.link_set.count }}+1;
+		var maxId=1;
+		//var num={{ category.link_set.count }}+1;
+		var usedNums=[];
+		
+		function addIdToUsed(id){
+			id=parseInt(id);
+			usedNums[id]=1;
+			if (id>maxId){
+				maxId=id;
+			}
+		}
+		
 		function addLink(e){
-			$(e).before('<li><input type="text" placeholder="Link" name="link_'+ num +'" /> <input type="url" placeholder="URL" name="URL_'+num+'" /></li>');
-			num++;
+			var i=1;
+			while ( !usedNums[i] ){
+				i++;
+			}
+			usedNums[i]=1;
+			if (i>maxId){
+				maxId=i;
+				
+			}
+			$(e).before('<li><fieldset><input type="text" placeholder="Link" name="link_'+ i +'" /> <input type="url" placeholder="URL" name="URL_'+i+'" /></li>');
 		}
 	</script>
 	<style>
@@ -55,19 +74,28 @@
 		<form action="{% url 'mylinks:categoriesAddUpdateNum' category.id %}" method="post" class="form">
 			{% csrf_token %}
 		
+			
+			
 			<div class="oneCat" id="{{ category.header_label }}_container">
 				<input type="text" value="{{ category.header_label }}" placeholder="Category" name="Header" />
 				<ul>
 					{% for link in category.link_set.all %}
-						<li><fieldset>
+						<li>
+						<fieldset>
 							<input type="text" placeholder="Link" value="{{link.link_label}}" name="Link_{{link.id}}" />
 							<input type="url" placeholder="URL" value="{{ link.link_url }}" name="URL_{{link.id}}" />
-						</fieldset></li>
+							<script>
+								addIdToUsed( {{link.id}} );
+							</script>
+						</fieldset>
+						</li>
 					{% endfor %}
 					<li><button type="button"onclick="addLink(this);">Add link</button></li>
 				</ul>
 				
 			</div>
+			
+			<input type="hidden" value="" id="maxId" name="maxId" />
 			
 			<input type="submit" value="Add" id="submission" />
 		</form>
