@@ -53,14 +53,14 @@ def categoriesAddUpdateNum(request,stuff):
 	
 	n=int(request.POST["maxId"])+1;
 	r+=str(n)+"<br>";
-	newLinks=[0]*n
+	newLinks=[0]*n;
 	for i in range(0,n):
 		newLinks[i]=["",""];
 	
 	#r+=newLinks+"<br>";
 	
 	for x in request.POST:
-		# r+=x+" "+request.POST[x]+"<br>";
+		r+=x+" "+request.POST[x]+"<br>";
 		try:
 			linktype,linkid=x.split("_",1);
 		except ValueError:
@@ -71,55 +71,17 @@ def categoriesAddUpdateNum(request,stuff):
 		elif (linktype=="URL"):
 			newLinks[int(linkid)][1]=request.POST[x];
 		
-	#for x in newLinks:
 	for i in range( 0,len(newLinks) ):
 		if (newLinks[i]!=["",""]):
-			r+="id: "+str(i)+" Label:"+newLinks[i][0]+" URL:"+newLinks[i][1]+"<br>";
+			if p.link_set.filter( id=str(i).exists() ):
+				link=p.link_set.get( id=str(i) );
+			else:
+				link=Link();
+			link.link_label=newLinks[i][0];
+			link.link_url=newLinks[i][1];
+			link.save();
 		
-		# if (linktype=="Link" or linktype=="URL"):
-			# print(":"+request.POST[x]+":");
-			# if ( p.link_set.filter(id=linkid).exists() ):
-				# link=p.link_set.get(id=linkid);
-				# if (linktype=="Link"):
-					# r+="1 "+request.POST[x]+"<br>";
-					# if ( link.link_label != request.POST[x] ):
-						# link.link_label=request.POST[x];
-				# elif (linktype=="URL"):
-					# r+="2 "+request.POST[x]+"<br>";
-					# if ( link.link_url != request.POST[x] ):
-						# link.link_url=request.POST[x];
-						
-				# link.save();
-			# else:
-				# r+="_";
-				# linkid=int(linkid);
-				# while ( len(newLinks) <= linkid ):
-					# r+='+';
-					# newLinks.append('\0');
-				# if (newLinks[linkid] == '\0'):
-					# link=Link();
-					# link.category=p;
-					# if (linktype=="Link"):
-						# r+="3 "+request.POST[x]+"<br>";
-						# link.link_label=request.POST[x];
-					# elif (linktype=="URL"):
-						# r+="4 "+request.POST[x]+"<br>";
-						# link.link_url=request.POST[x];
-					# newLinks[linkid]=link;
-				# else:
-					# link=newLinks[linkid];
-					# r+="-";
-					# if (linktype=="Link"):
-						# r+="5 "+request.POST[x]+"<br>";
-						# link.link_label=request.POST[x];
-					# elif (linktype=="URL"):
-						# r+="6 "+request.POST[x]+"<br>";
-						# link.link_url=request.POST[x];
-					# newLinks[linkid]=link;
-
-	# for link in newLinks:
-		# if (link != '\0'):
-			# link.save();
 	
-	return HttpResponse(r);
+	#return HttpResponse(r);
 	#return index(request);
+	return redirect("index");
