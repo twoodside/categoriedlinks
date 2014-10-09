@@ -73,7 +73,7 @@ def categoriesAddUpdateNum(request,stuff):
 		
 	for i in range( 0,len(newLinks) ):
 		if (newLinks[i]!=["",""]):
-			if p.link_set.filter( id=str(i).exists() ):
+			if p.link_set.filter( id=str(i) ).exists():
 				link=p.link_set.get( id=str(i) );
 			else:
 				link=Link();
