@@ -49,9 +49,10 @@ def categoriesAddUpdateNum(request,stuff):
 	
 	p=Category.objects.get(id=stuff);
 	
-	r=request.POST["maxId"]+"<br>";
+	r=request.POST["maxId"]+" ";
 	
 	n=int(request.POST["maxId"]);
+	r+=str(n)+"<br>";
 	newLinks=[0]*n
 	for i in range(0,n):
 		newLinks[i]=["",""];
