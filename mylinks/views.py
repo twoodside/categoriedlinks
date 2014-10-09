@@ -54,7 +54,7 @@ def categoriesAddUpdateNum(request,stuff):
 	newLinks=[];
 	
 	for x in request.POST:
-		r+=x+" "+request.POST+"<br>";
+		r+=x+" "+request.POST[x]+"<br>";
 		try:
 			linktype,linkid=x.split("_",1);
 		except ValueError:
