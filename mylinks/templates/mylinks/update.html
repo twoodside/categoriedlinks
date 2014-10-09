@@ -79,7 +79,7 @@
 			<input type="hidden" value="1" id="maxId" name="maxId" />
 			
 			<div class="oneCat" id="{{ category.header_label }}_container">
-				<input type="text" value="{{ category.header_label }}" placeholder="Category" name="Header" />
+				<h2>{{ category.header_label }}</h2>
 				<ul>
 					{% for category in categories %}
 						<li>

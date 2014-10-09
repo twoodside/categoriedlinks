@@ -38,6 +38,7 @@ def updateNum(request,stuff):
 def categoriesAddUpdate(request):
 	
 	cats=Category.objects;
+	r="";
 	
 	for x in request.POST:
 		try:
