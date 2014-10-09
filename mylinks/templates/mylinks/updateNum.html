@@ -11,6 +11,7 @@
 		function addIdToUsed(id){
 			id=parseInt(id);
 			usedNums[id]=1;
+			alert(usedNums);
 			if (id>maxId){
 				maxId=id;
 				$("#maxId").attr("value",i);
@@ -23,6 +24,7 @@
 				i++;
 			}
 			usedNums[i]=1;
+			alert(usedNums);
 			if (i>maxId){
 				maxId=i;
 				$("#maxId").attr("value",i);
